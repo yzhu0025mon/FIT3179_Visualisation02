@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "title": "Distribution of victorian shops holding liquor licences",
-  "width": 800,
-  "height": 600,
+  "width": 1000,
+  "height": 500,
   "data": {
     "url": "https://raw.githubusercontent.com/yzhu0025mon/FIT3179_Visualisation02/main/js/VIC.suburbs.json",
     "format": {"type": "topojson", "feature": "VIC"}

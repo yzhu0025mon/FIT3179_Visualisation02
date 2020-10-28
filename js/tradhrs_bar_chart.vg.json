@@ -1,0 +1,76 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 500,
+  "height": 600,
+  "title": "Trading Hours of Shops with Liquor License (by Regions)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/yzhu0025mon/FIT3179_Visualisation02/main/data/Fully_Processed_Data.json"
+  },
+  "params": [
+    {
+      "name": "Region_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Barwon South-West",
+          "Gippsland",
+          "Grampians",
+          "Hume",
+          "Loddon Mallee",
+          "Metro East",
+          "Metro North",
+          "Metro South",
+          "Metro West",
+          "North West"
+        ],
+        "labels": [
+          "Show all",
+          "Barwon South-West",
+          "Gippsland",
+          "Grampians",
+          "Hume",
+          "Loddon Mallee",
+          "Metro East",
+          "Metro North",
+          "Metro South",
+          "Metro West",
+          "North West"
+        ],
+        "name": "Select regions: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "Region_selection == null || datum.Region == Region_selection"},
+    {
+      "aggregate": [{"op": "count", "as": "Count"}],
+      "groupby": ["Trading Hours"]
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "Trading Hours",
+      "type": "ordinal",
+      "sort": [
+        "12AM",
+        "1AM",
+        "2AM",
+        "3AM",
+        "4AM",
+        "5AM",
+        "6AM",
+        "7AM",
+        "24 Hours",
+        "Ordinary",
+        "Non-standard",
+        "Unspecified"
+      ]
+    },
+    "y": {"field": "Count", "type": "quantitative"},
+    "tooltip": [
+      {"field": "Count", "type": "quantitative"}
+    ]
+  }
+}

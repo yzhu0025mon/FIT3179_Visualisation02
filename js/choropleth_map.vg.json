@@ -4,7 +4,7 @@
   "width": 800,
   "height": 600,
   "data": {
-    "url": "https://raw.githubusercontent.com/yzhu0025mon/FIT3179_Week09_Homework/main/js/VIC.suburbs.json",
+    "url": "https://raw.githubusercontent.com/yzhu0025mon/FIT3179_Visualisation02/main/js/VIC.suburbs.json",
     "format": {"type": "topojson", "feature": "VIC"}
   },
   "params": [
@@ -35,7 +35,7 @@
       "lookup": "properties.vic_loca_2",
       "from": {
         "data": {
-          "url": "https://raw.githubusercontent.com/yzhu0025mon/FIT3179_Week09_Homework/main/data/Counts_by_suburbs.csv"
+          "url": "https://raw.githubusercontent.com/yzhu0025mon/FIT3179_Visualisation02/main/data/Counts_by_suburbs.csv"
         },
         "key": "Suburb",
         "fields": [

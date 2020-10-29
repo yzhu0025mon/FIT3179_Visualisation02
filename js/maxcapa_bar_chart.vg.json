@@ -49,7 +49,7 @@
     }
   ],
   "encoding": {
-    "x": {
+    "y": {
       "field": "Maximum Capacity",
       "type": "ordinal",
       "sort": [
@@ -63,7 +63,7 @@
         "Unspecified"
       ]
     },
-    "y": {"field": "Count", "type": "quantitative"},
+    "x": {"field": "Count", "type": "quantitative"},
     "tooltip": [
       {"field": "Count", "type": "quantitative"}
     ]
@@ -73,9 +73,9 @@
   }, {
     "mark": {
       "type": "text",
-      "align": "center",
-      "baseline": "bottom",
-      "dy": -3
+      "align": "left",
+      "baseline": "middle",
+      "dx": 5
     },
     "encoding": {
       "text": {"field": "Count", "type": "quantitative"}

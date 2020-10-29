@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "width": 500,
-  "height": 600,
+  "width": 700,
+  "height": 500,
   "title": "Categories of Shops with Liquor License (by Regions)",
   "data": {
     "url": "https://raw.githubusercontent.com/yzhu0025mon/FIT3179_Visualisation02/main/data/Fully_Processed_Data.json"

@@ -1,66 +1,64 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "title": "Distribution of victorian shops holding liquor licences",
   "width": 1000,
   "height": 600,
-  "data": {
-    "url": "https://raw.githubusercontent.com/yzhu0025mon/FIT3179_Visualisation02/main/data/VIC.suburbs.json",
-    "format": {"type": "topojson", "feature": "VIC"}
-  },
+  "title": "Distribution of victorian shops holding liquor licences",
+  "projection": {"type": "equirectangular"},
   "params": [
+        {
+          "name": "Condition_Selection",
+          "bind": {
+            "input": "select",
+            "options": [
+             null,
+             "Total_Number",
+              "BYO_Only",
+             "Ordinary_Trading_Hours",
+              "Gambling_Allowed"
+            ],
+            "labels": [
+              "None",
+              "Total number of stores",
+              "BYO Stores",
+             "Stores trade in ordinary times",
+              "Stores allow gambling"
+            ],
+           "name": "Select the codition: "
+         }
+       }
+     ],
+  "layer": [
     {
-      "name": "Condition_Selection",
-      "bind": {
-        "input": "select",
-        "options": [
-          null,
-          "Total_Number",
-          "BYO_Only",
-          "Ordinary_Trading_Hours",
-          "Gambling_Allowed"
-        ],
-        "labels": [
-          "None",
-          "Total number of stores",
-          "BYO Stores",
-          "Stores trade in ordinary times",
-          "Stores allow gambling"
-        ],
-        "name": "Select the codition: "
+      "data": {
+        "url": "https://raw.githubusercontent.com/yzhu0025mon/FIT3179_Visualisation02/main/data/VIC.suburbs.json",
+        "format": {"type": "topojson", "feature": "VIC"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    }, 
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/yzhu0025mon/FIT3179_Visualisation02/main/data/Count_by_suburbs.csv"
+      },
+      "transform": [
+        {"calculate": "datum[Condition_Selection] + 0.1", "as": "Number of shops"}
+      ],
+      "mark": {"type": "circle"},
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Lattitude", "type": "quantitative"},
+        "size": {
+          "field": "Number of shops",
+          "type": "quantitative",
+          "scale": {"type": "log"}
+        },
+        "tooltip": [
+          {"field": "Suburb", "type": "nominal", "title": "Suburb"},
+          {"field": "Total_Number", "type": "quantitative", "title": "Total Number of Stores"},
+          {"field": "BYO_Only", "type": "quantitative", "title": "Number of BYO Stores"},
+          {"field": "Ordinary_Trading_Hours", "type": "quantitative", "title": "Number of Stores Trade in Ordinal Time"},
+          {"field": "Gambling_Allowed", "type": "quantitative", "title": " Number of Stores Allow Gambling"}
+        ]
       }
     }
-  ],
-  "transform": [
-    {
-      "lookup": "properties.vic_loca_2",
-      "from": {
-        "data": {
-          "url": "https://raw.githubusercontent.com/yzhu0025mon/FIT3179_Visualisation02/main/data/Counts_by_suburbs.csv"
-        },
-        "key": "Suburb",
-        "fields": [
-          "Total_Number",
-          "BYO_Only",
-          "Ordinary_Trading_Hours",
-          "Gambling_Allowed"]
-      }
-    },
-    {"calculate": "datum[Condition_Selection] + 0.1", "as": "Number of shops"}
-  ],
-  "projection": {"type": "equirectangular"},
-  "mark": {"type": "geoshape"},
-  "encoding": {
-    "color": {
-      "field": "Number of shops",
-      "type": "quantitative",
-      "scale": {"type": "log"}
-    },
-    "tooltip": [
-      {"field": "properties.vic_loca_2", "type": "nominal", "title": "Suburb"},
-      {"field": "Total_Number", "type": "quantitative", "title": "Total Number of Stores"},
-      {"field": "BYO_Only", "type": "quantitative", "title": "Number of BYO Stores"},
-      {"field": "Ordinary_Trading_Hours", "type": "quantitative", "title": "Number of Stores Trade in Ordinal Time"},
-      {"field": "Gambling_Allowed", "type": "quantitative", "title": " Number of Stores Allow Gambling"}
-    ]
-  }
+  ]
 }
